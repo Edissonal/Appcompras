@@ -1,0 +1,58 @@
+<h3>Listado de provedores</h3>
+
+<a  class="btn btn-primary float-md-right" routerLink="/addprovee">Anadir Nuevo Proveedor</a>
+<input type="search"  placeholder=" Teclee un proveedor ..."
+        class="form-control"
+        [formControl]="campoBusqueda">
+
+<div *ngIf="cargando">
+    <img src="../../../assets/spinner.gif" alt="cargando">
+</div>
+
+
+<div *ngIf="resultados" class="text-center"  style="padding-top:20px;">
+    
+<table class="table table-bordered table-striped" style="margin-top: 40px;">
+<thead>
+  <tr class="filters">
+      <th>nombre</th>
+      <th>cif</th>
+      <th>Direccion</th>
+      <th>Codigo postal</th>
+      <th>localidad</th>
+      <th>provincia</th>
+      <th>Telefono</th>
+      <th>Correo</th>
+      <th>Contacto </th>
+      <th>Editar</th>
+      <th>Eliminar</th>
+
+  </tr>  
+</thead>
+<tbody>
+    <tr *ngFor="let proveedor of proveedores">
+    <td>{{proveedor.nombre}}</td>
+    <td>{{proveedor.cif}}</td>
+    <td>{{proveedor.direccion}}</td>
+    <td>{{proveedor.cp}}</td>
+    <td>{{proveedor.localidad}}</td>
+    <td>{{proveedor.provincia}}</td>
+    <td>{{proveedor.telefono}}</td>
+    <td>{{proveedor.email}}</td>
+    <td>{{proveedor.contacto}}</td>
+    <td><button type="button" 
+                class="btn btn-success"
+                routerLink="/editpro/{{proveedor.id$}}">Editar</button></td>
+                    
+                <td><button type="button" 
+                class="btn btn-danger"
+                (click)="eliminarProveedor(proveedor.id$)">Eliminar</button></td>
+
+</tr>
+</tbody>
+</table>
+</div>
+
+<div *ngIf="noresultados">
+    <p>no Existe ninguna conicidencia</p>
+</div>

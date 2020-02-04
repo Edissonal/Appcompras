@@ -1,0 +1,162 @@
+<div class="row">
+    <div class="col col-md"></div> 
+    <div class="col-10 col-md-8">
+   <h2>Anadir Nueva factura</h2>
+   <br> 
+   <a class="btn btn-primary float-md-right" routerLink="/facturas">Regresar al listado</a>
+   <br>
+<form [formGroup]="FacturasForm" (ngSubmit)="onSubmit()">
+
+<div class="form-group" >
+  <label for="proveedor">proveedor</label>
+  <i class="fa fa-check-circle check"
+  *ngIf="FacturasForm.controls.tipo.valid"></i>
+
+  <i class="fa fa-exclamation-circle uncheck"
+               *ngIf="FacturasForm.controls.proveedor.invalid &&
+               FacturasForm.controls.proveedor.touched"></i>
+  
+  <input type="text"  
+         class="form-control"  
+        id="proovedor"
+        formControlName="proveedor">
+
+        <p class="alert  alert-danger" *ngIf="FacturasForm.controls.proveedor.invalid && 
+        FacturasForm.controls.proveedor.touched"> El campo proveedor es Obligatorio</p>
+
+        
+  
+ 
+        
+</div>
+
+
+<div class="form-group">
+  <label for="fecha">Fecha</label>
+  <i class="fa fa-check-circle check"
+  *ngIf="FacturasForm.controls.fecha.valid"></i>
+
+  <i class="fa fa-exclamation-circle uncheck"
+               *ngIf="FacturasForm.controls.fecha.invalid &&
+               FacturasForm.controls.fecha.touched"></i>
+  
+
+
+  <input type="date"  
+          class="form-control"
+          id="fecha"
+          formControlName="fecha">
+
+          <p class="alert  alert-danger" *ngIf="FacturasForm.controls.fecha.invalid && 
+          FacturasForm.controls.fecha.touched"> El campo fecha es Obligatorio</p>
+
+  </div>
+
+  <div class="form-group">
+  <label for="concepto">No de factura /concepto</label>
+  <i class="fa fa-check-circle check"
+  *ngIf="FacturasForm.controls.concepto.valid"></i>
+
+  <i class="fa fa-exclamation-circle uncheck"
+               *ngIf="FacturasForm.controls.concepto.invalid &&
+               FacturasForm.controls.concepto.touched"></i>
+  <input type="text" 
+        class="form-control"
+        id="concepto"
+        formControlName="concepto">
+
+        <p class="alert  alert-danger" *ngIf="FacturasForm.controls.concepto.invalid && 
+        FacturasForm.controls.concepto.touched"> El campo concepto es Obligatorio</p>
+</div>
+
+
+<div class="form-group">
+    <label for="base">Base </label>
+    <i class="fa fa-check-circle check"
+    *ngIf="FacturasForm.controls.base.valid"></i>
+  
+    <i class="fa fa-exclamation-circle uncheck"
+                 *ngIf="FacturasForm.controls.base.invalid &&
+                 FacturasForm.controls.base.touched"></i>
+    <input type="number"  
+            class="form-control"
+            id="base"
+            formControlName="base">
+
+            <p class="alert  alert-danger" *ngIf="FacturasForm.controls.base.invalid && 
+            FacturasForm.controls.base.touched"> El campo base es Obligatorio</p>
+
+  </div>
+
+<div class="form-group">
+  <label for="tipo">Tipo de Iva </label>
+  <i class="fa fa-check-circle check"
+  *ngIf="FacturasForm.controls.tipo.valid"></i>
+
+  <i class="fa fa-exclamation-circle uncheck"
+               *ngIf="FacturasForm.controls.tipo.invalid &&
+               FacturasForm.controls.tipo.touched"></i>
+
+ <select 
+          class="form-control"  
+          id="tipo"
+          formControlName="tipo">
+    <option value="">Seleccione</option>
+    <option value=0>0%</option>
+    <option value=0.4>4%</option>
+    <option value=0.10>10%</option>
+    <option value=0.021>21%</option>
+
+</select>
+
+<p class="alert  alert-danger" *ngIf="FacturasForm.controls.tipo.invalid && 
+FacturasForm.controls.tipo.touched"> El campo   iva es Obligatorio</p>
+</div>
+
+<div class="form-group">
+  <label for="iva">Importe Iva </label>
+  
+               
+  <input type="number"  
+          class="form-control" 
+          id="iva"
+          formControlName="iva"
+          [(ngModel)]="FacturasForm.value.iva"
+          disabled>
+
+       
+</div>
+
+
+<div class="form-group">
+  <label for="total">Total factura</label>
+
+  <input type="number"  
+        class="form-control" 
+        id="total"
+        formControlName="total"
+        [(ngModel)]="FacturasForm.value.total"
+        disabled>
+
+    
+</div>
+
+<button type="submit" 
+        class="btn btn-primary"
+        [disabled]="!FacturasForm.valid">Anadir factura</button>
+        
+        <a class="btn btn-danger" routerLink="/facturas">Cancelar</a>
+        <p class="alert alert-danger" *ngIf="!FacturasForm.valid">
+          Porfavor ingrese todos los campos Obligatorios
+        </p>
+
+
+
+
+</form>
+<pre>Valor del Formulario:{{FacturasForm.value | json}}</pre>
+<pre>Status del formulario: {{ FacturasForm.status | json }}</pre>
+<pre>Valor del objeto :{{factura |  json}}</pre>
+</div>
+<div class="col col-md"></div>  
+</div>
